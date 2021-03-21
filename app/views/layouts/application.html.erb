@@ -10,6 +10,56 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="/">Ruby on Rails</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <!-- Right Side Of Navbar -->
+              <ul class="navbar-nav ml-auto">
+              <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+              <% if user_signed_in? %>
+                <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+                <li class="nav-item dropdown">
+                  <%= link_to "#", id: "navbarDropdown", class: "nav-link dropdown-toggle",
+                  role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do %>
+                      <%= current_user.name %> <span class="caret"></span>
+                  <% end %>
+
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <%= link_to "ログアウト", "#", class: "dropdown-item", action: logout_path,
+                    onclick: "event.preventDefault(); document.getElementById('logout-form').submit();" %>
+
+                      <%= form_with url: logout_url, method: "get", id: "logout-form" do |f| %>
+                      <%= f.submit style: "display: none;"%>
+                    <% end %>
+
+                    <%= form_with url: logout_url, method: "get", id: "logout-form" do |f| %>
+                      <%= f.submit style: "display: none;"%>
+                    <% end %>
+                  </div>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "登録", new_user_registration_path, class: "nav-link" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="py-4 mb-5">
+      <% if notice %><p class="alert alert-warning"><%= notice %></div><% end %>
+      <% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

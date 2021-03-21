@@ -1,3 +1,9 @@
 class Product < ApplicationRecord
-  has_many :products
+  belongs_to :category
+  has_many :reviews
+
+
+ def reviews_new
+   reviews.new
+ end
 end

@@ -1,0 +1,49 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm samazon-header-container">
+     <%= link_to root_path do %>
+       <%= image_tag "/images/logo.jpg" %>
+     <% end %>
+    <form class="form-inline">
+      <div class="form-group">
+        <input class="form-control samazon-header-search-input">
+      </div>
+      <div class="input-group">
+        <button type="submit" class="btn samazon-header-search-button"><i class="fas fa-search samazon-header-search-icon"></i></button>
+      </div>
+    </form>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Right Side Of Navbar -->
+      <ul class="navbar-nav ml-auto mr-5 mt-2">
+      <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+      <% if user_signed_in? %>
+        <li class="nav-item mr-5">
+          <%= link_to "ログアウト", logout_path, onclick: "event.preventDefault(); document.getElementById('logout-form').submit();" %>
+          <%= form_with url: logout_path, style: "display: none;", method: "get", id: "logout-form" do |f| %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item mr-5">
+          <%= link_to new_user_registration_path, class: "nav-link" do %>
+            <label>新規登録</label>
+          <% end %>
+        </li>
+        <li class="nav-item mr-5">
+          <%= link_to login_path, class: "nav-link" do %>
+            <label>ログイン</label>
+          <% end %>
+        </li>
+        <hr>
+        <li class="nav-item mr-5">
+          <%= link_to login_path, class: "nav-link" do %><i class="far fa-heart"></i><% end %>
+        </li>
+        <li class="nav-item mr-5">
+          <%= link_to login_path, class: "nav-link" do %><i class="fas fa-shopping-cart"></i><% end %>
+        </li>
+      <% end %>
+    </div>
+  </nav>
+</header>

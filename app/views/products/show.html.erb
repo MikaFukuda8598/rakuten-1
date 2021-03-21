@@ -32,13 +32,13 @@
           </div>
           <div class="row">
             <div class="col-7">
-              <%= f.submit "カートに追加", class: "btn samazon-submit-button w-100" do %>
+              <%= link_to favorite_product_path, class: "btn samazon-favorite-button text-favorite w-100" do %>
                 <i class="fas fa-shopping-cart"></i>
               <% end %>
             </div>
             <div class="col-5">
               <%= link_to "#", class: "btn samazon-favorite-button text-dark w-100" do %>
-                <i class="fa fa-heart"></i>お気に入り
+                <i class="fa fa-heart"></i><%= current_user.likes?(@product) ? "お気に入り解除" : "お気に入り" %>
               <% end %>
             </div>
           </div>

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     get "logout", :to => "users/sessions#destroy"
   end
   resources :products do
+    member do
+     get :favorite
+   end
     resources :reviews, only: [:create]
   end
 end

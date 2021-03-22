@@ -41,3 +41,18 @@ major_category_names.each do |major_category_name|
     end
   end
 end
+
+product_ids = [*1..30]
+product_names = [*"1".."30"]
+category_ids = [*1..18,*1..12]
+array_number = 0
+
+product_ids.each do
+  Product.create(
+    name: product_names[array_number],
+    description: product_names[array_number],
+    price: product_ids[array_number],
+    category_id: category_ids[array_number]
+  )
+  array_number += 1
+end

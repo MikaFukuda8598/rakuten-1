@@ -1,0 +1,56 @@
+<div class="container d-flex justify-content-center mt-3">
+  <div class="w-75">
+    <h1>ショッピングカート</h1>
+
+    <div class="offset-8 col-4">
+      <div class="row">
+        <div class="col-6">
+          <h2>数量</h2>
+        </div>
+        <div class="col-6">
+          <h2>合計</h2>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <% (0..@user_cart_items_count - 1).each do |list_number| %>
+      <div class="col-md-2 mt-2">
+          <%= image_tag "/images/dummy.png", class: "img-fuild w-100" %>
+      </div>
+      <div class="col-md-6 mt-4">
+        <h3 class="mt-4"><%= @product_names[list_number] %></h3>
+      </div>
+      <div class="col-md-2">
+        <h3 class="w-100 mt-4"><%= @user_cart_items[list_number].quantity %></h3>
+      </div>
+      <div class="col-md-2">
+        <h3 class="w-100 mt-4">￥<%= @user_cart_items[list_number].price_cents * @user_cart_items[list_number].quantity %></h3>
+      </div>
+      <% end %>
+    </div>
+
+    <hr>
+
+    <div class="offset-8 col-4">
+      <div class="row">
+        <div class="col-6">
+          <h2>合計</h2>
+        </div>
+        <div class="col-6">
+          <h2>￥<%= @total %></h2>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          表示価格は税込みです
+        </div>
+      </div>
+    </div>
+
+     <%= form_with url: cart_users_path , method: :delete, class: "d-flex justify-content-end mt-3" do |f| %>
+       <%= link_to "買い物を続ける", products_path, class: "btn samazon-favorite-button border-dark text-dark mr-3" %>
+       <%= f.submit "購入を確定する", class: "btn samazon-submit-button" %>
+     <% end %>
+  </div>
+</div>

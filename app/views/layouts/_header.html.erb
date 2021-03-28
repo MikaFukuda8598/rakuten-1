@@ -25,6 +25,11 @@
            <i class="fas fa-user mr-1"></i><label>マイページ</label>
          <% end %>
         </li>
+         <li class="nav-item mr-5">
+          <%= link_to cart_users_path, class: "nav-link" do %>
+            <i class="fas fa-shopping-cart"></i>
+          <% end %>
+        </li>
       <% else %>
         <li class="nav-item mr-5">
           <%= link_to new_user_registration_path, class: "nav-link" do %>

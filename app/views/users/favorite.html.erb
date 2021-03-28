@@ -1,0 +1,34 @@
+<div class="container  d-flex justify-content-center mt-3">
+  <div class="w-75">
+    <h1>お気に入り</h1>
+
+    <hr>
+
+    <div class="row">
+      <% @favorites.each do |favorite| %>
+      <div class="col-md-8 mt-2">
+        <div class="d-inline-flex">
+          <%= link_to product_path(favorite), class: "w-25" do %>
+            <%= image_tag "/images/dummy.png", class: "img-fuild w-100" %>
+          <% end %>
+          <div class="container mt-3">
+            <h5 class="w-100 samazon-favorite-item-text"><%= favorite.name %></h5>
+            <h6 class="w-100samazon-favorite-item-text">￥<%= favorite.price %></h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 d-flex align-items-center justify-content-end">
+        <%= link_to product_path(favorite), class: "samazon-favorite-item-delete" do %>
+          削除
+        <% end %>
+      </div>
+      <div class="col-md-2 d-flex align-items-center justify-content-end">
+        <button type="submit" class="btn samazon-favorite-add-cart text-white w-100">カートに入れる</button>
+      </div>
+      <% end %>
+    </div>
+
+    <hr>
+
+  </div>
+</div>
